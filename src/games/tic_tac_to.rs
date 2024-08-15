@@ -40,9 +40,7 @@ fn win_chack(map: Vec<Vec<char>> ) -> (bool, char){
             if streak == 3{
                 return (true, player);
             }
-            //reset valuse
-            streak = 0;
-
+            
             //thack vurtekole lines
             if map[0 * 2 + 2][0 * 2 + 2] == player && map[1 * 2 + 2][1 * 2 + 2] == player && map[2 * 2 + 2][2 * 2 + 2] == player {
                 return (true, player);
