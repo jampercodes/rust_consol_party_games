@@ -1,5 +1,22 @@
+use games::usfol::user_input;
+
 mod games;
 
 fn main() {
-    games::tic_tac_to::start();
+    let main_manu_games = vec!["tic tac to", "4 in a row"];
+
+    while true {
+        println!("enter q to qwit.");
+        for i in 0..main_manu_games.len(){
+            println!("enter {} to play {}.", i, main_manu_games[i])
+        }
+
+        let main_manu_input = &user_input("")[..];
+        match main_manu_input{
+            "0" => games::tic_tac_to::start(),
+            "1" => println!("coming soon"),
+            "q" => break,
+            &_ => println!("not falid game!")
+        }
+    }
 }
