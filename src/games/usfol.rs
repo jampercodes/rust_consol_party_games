@@ -1,7 +1,7 @@
 use std::io::{stdin, stdout, Write};
 
 pub fn user_input(print: &str) -> String{
-    
+
     let mut user_input_string =  String::new();
 
     print!("{}", print);
@@ -21,7 +21,7 @@ pub fn user_input(print: &str) -> String{
         user_input_string.pop();
     }
 
-    return user_input_string; 
+    return user_input_string;
 }
 
 pub fn string_to_char(input: String) -> char{
