@@ -58,6 +58,19 @@ fn win_chack(map: Vec<Vec<char>> ) -> bool{
     return false;
 }
 
+fn player_move(mut map: Vec<Vec<char>>, input: String, player: char) -> Vec<Vec<char>> {
+    let split_input: Vec<char> = input.chars().collect();
+    let row_charr = split_input[0];
+    let mut row = 0;
+    let colum = split_input[1];
+    if row_charr == 'a'{row = 0;}
+    else if row_charr == 'c'{row = 1;}
+    else if row_charr == 'd'{row = 2;}
+    else {println!("not a valid char"); return map;}
+
+    map[colum as usize * 2 + 2 as usize][row * 2 + 2 as usize] = player;
+    return map;
+}
 
 pub fn start(){
     // to only exes the game tiles use this i*2+3, i = the index 0..2
