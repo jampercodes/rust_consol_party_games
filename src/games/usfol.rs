@@ -1,10 +1,10 @@
+use std::io::{stdin, stdout, Write};
 
-
-pub fn user_input(Print: &str) -> String{
+pub fn user_input(print: &str) -> String{
     
     let mut user_input_string =  String::new();
 
-    print!("{}", Print);
+    print!("{}", print);
     //--------USER INPUT--------\\
 
     // fluse input bufer
@@ -22,4 +22,9 @@ pub fn user_input(Print: &str) -> String{
     }
 
     return user_input_string; 
+}
+
+pub fn string_to_char(input: String) -> char{
+    let char_vec: Vec<char> = input.chars().collect();
+    return char_vec[0];
 }
