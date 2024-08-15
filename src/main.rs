@@ -1,3 +1,5 @@
+mod games;
+
 fn main() {
-    println!("Hello, world!");
+    games::tic_tac_to::start();
 }
