@@ -40,7 +40,7 @@ fn win_chack(map: Vec<Vec<char>> ) -> (bool, char){
             if streak == 3{
                 return (true, player);
             }
-            
+
             //thack vurtekole lines
             if map[0 * 2 + 2][0 * 2 + 2] == player && map[1 * 2 + 2][1 * 2 + 2] == player && map[2 * 2 + 2][2 * 2 + 2] == player {
                 return (true, player);
@@ -58,7 +58,7 @@ fn win_chack(map: Vec<Vec<char>> ) -> (bool, char){
     return (false, ' ');
 }
 
-fn player_move(mut map: Vec<Vec<char>>, input: String, player: char) -> Vec<Vec<char>> {
+fn player_move(mut map: Vec<Vec<char>>, input: String, player: char) -> (Vec<Vec<char>>, bool) {
     let split_input: Vec<char> = input.chars().collect();
     let row_charr = split_input[0];
     let colum_charr = split_input[1];
@@ -67,22 +67,22 @@ fn player_move(mut map: Vec<Vec<char>>, input: String, player: char) -> Vec<Vec<
         'A'|'a' => 2,
         'B'|'b' => 4,
         'C'|'c' => 6,
-        _ => {println!("Not a valid char"); return map;}
+        _ => {println!("Not a valid char"); return (map, false);}
     };
 
     let col = match colum_charr {
         '1' => 2,
         '2' => 4,
         '3' => 6,
-        _ => {println!("Not a valid number"); return map;}
+        _ => {println!("Not a valid number"); return (map, false);}
     };
 
     if map[row][col] == ' ' {  // Ensure the spot is empty
         map[row][col] = player;
+        return (map, true);
     } else {
-        println!("Spot already taken!");
+        return (map, false);
     }
-    return map;
 }
 
 pub fn start(){
@@ -106,15 +106,22 @@ pub fn start(){
     while runing {
         print_map(map.clone());
         if turn == 1{
-            map = player_move(map, user_input(""), player1);
-            turn +=1;
+            let (Map, corect_turn) = player_move(map.clone(), user_input("player x is playing >"), player1);
+            if corect_turn {
+                turn +=1;
+                map = Map;
+            }
         } else{
-            map = player_move(map.clone(), user_input(""), player2);
-            turn = 1;
+            let (Map, corect_turn) = player_move(map.clone(), user_input("player o is playing >"), player2);
+            if corect_turn {
+                turn =1;
+                map = Map;
+            }
         }
         let (is_doune, winer) = win_chack(map.clone());
         if is_doune {
             runing = false;
+            print_map(map.clone());
             println!("player whit the charector {}  hase wone", winer);
         }
     }
