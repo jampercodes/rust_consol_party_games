@@ -3,7 +3,7 @@ use games::usfol::user_input;
 mod games;
 
 fn main() {
-    let main_manu_games = vec!["tic tac to", "4 in a row"];
+    let main_manu_games = vec!["tic tac to", "gasing game"];
 
     while true {
         println!("enter q to qwit.");
@@ -14,7 +14,7 @@ fn main() {
         let main_manu_input = &user_input("")[..];
         match main_manu_input{
             "0" => games::tic_tac_to::start(),
-            "1" => println!("coming soon"),
+            "1" => games::gasing::start(),
             "q" => break,
             &_ => println!("not falid game!")
         }
